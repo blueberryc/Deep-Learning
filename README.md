@@ -9,7 +9,7 @@
 
 ### 学习目录
 
-1. [线性代数](./Chapter01_线性代数/Chapter01_线性代数.md) -- [PDF版本]()
+1. [线性代数](./Chapter01_线性代数/Chapter01_线性代数.md) -- [PDF版本下载](https://github.com/blueberryc/Deep-Learning/raw/master/Chapter01_%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/Chapter01_%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0.pdf)
 2. 
 
 ---
