@@ -170,3 +170,77 @@ $$
 
 因此，对角矩阵 $D$ 对角线上的元素就被称为矩阵 $A$ 的**奇异值**，矩阵 $U$ 的列向量被称为 **左奇异值向量**，矩阵 $V$ 的列向量被称为 **右奇异值向量**。
 
+
+
+### 奇异值分解的推导过程
+
+假设矩阵 $A$ 为一个 $m\times n$ 的矩阵，我们知道一个对称正定矩阵是一定能进行矩阵分解的，因此我们首先需要将矩阵 $A$ 构造为一个对称正定矩阵。
+
+$A^{\top}A$ 是一个对称正定矩阵，证明：
+$$
+(A^{\top}A)^{\top}=A^{\top}(A^{\top})^{\top}=A^{\top}A\Rightarrow \text{对称性}\\
+x^{\top}A^{\top}Ax=(Ax)^{\top}(Ax)\geq 0\Rightarrow \text{正定性}
+$$
+因此，对于矩阵 $A$ ，显然有：
+$$
+A^{\top} Av_i=\lambda_{i} v_{i}\tag{1}
+$$
+其中 $\lambda_i$ 为特征值，$v_i$ 为特征向量。假定 $(v_i, v_j)$ 是一组正交基，那么有 $v_i^{\top}\cdot v_j=0$ ，则我们可以证明 $(Av_i,Av_j)$ 也是一组正交基。证明如下：
+$$
+\begin{aligned}
+\left(A v_{i}\right)^{\top} \cdot A v_{j}  &=v_{i}^{\top} A^{\top} A v_{j} \\ 
+&=v_{i}^{\top} \lambda_{j} v_{j} \\ 
+&=\lambda_{j} v_{i}^{\top} v_{j} \\ 
+&=0 
+\end{aligned}\tag{2}
+$$
+正交基参考：[基向量、标准正交基、对称矩阵、Hermite阵](https://zhuanlan.zhihu.com/p/33001392)
+
+> 向量空间的一组基是张成该空间的一个线性无关向量集合
+
+对公式（1）两边乘以 $v_i^{\top}$ ，可以得到：
+$$
+v_{i}^{\top} A^{\top} A v_{i}=v_{i}^{\top} \lambda_{i} v_{i} \Rightarrow\left\|A v_{i}\right\|^{2}=\lambda_{i} \Rightarrow \left\| Av_i \right\|=\sqrt{\lambda_i}\tag{3}
+$$
+在公式（3）中，$\sqrt{\lambda_i}$ 就是奇异值分解中的奇异值。然后我们继续对公式（1）的两边左乘矩阵 $A$ ，可以得到如下变换：
+$$
+\begin{align}
+&AA^{\top}Av_i=A\lambda_iv_i=\lambda_i(Av_i)\\
+\Rightarrow & AA^{\top}(Av_i)=\lambda_i(Av_i) \tag{4}
+\end{align}
+$$
+对比公式（1）和公式（4），我们可以发现矩阵 $AA^{\top}$ 和矩阵 $A^{\top}A$ 具有相同的特征值。不妨令矩阵 $AA^{\top}$ 的特征向量为 $u_i$ ，从公式（4）可以推出：$u_i=Av_i$ 。但是正交特征矩阵一般需要为单位矩阵，因此我们需要将特征向量 $u_i$ 缩放为单位向量。
+
+求一个向量的单位向量，只需要将该向量除以其模长就行，因此有：
+$$
+u_i=\frac{Av_i}{\left\| Av_i \right\|}=\frac{1}{\sqrt{\lambda_i}}Av_i \tag{5}
+$$
+从而有 $Av_i=\sqrt{\lambda_i}u_i$ 成立。现在我们假设矩阵 $V$ 是矩阵 $A^{\top}A$ 的一组特征向量，矩阵 $U$ 是矩阵 $AA^{\top}$ 的一组特征向量，且均是正交的。因此有：
+$$
+% <![CDATA[
+A\underbrace{\begin{bmatrix}v_1 & \cdots & v_r  & v_{r+1} & \cdots & v_n\end{bmatrix}}_V
+    = \underbrace{\begin{bmatrix}u_1 & \cdots & u_r & u_{r+1} & \cdots & u_m \end{bmatrix}}_U 
+	\underbrace{
+        \begin{bmatrix}
+            \sigma_1 \\ 
+             & \ddots \\
+             && \sigma_r  \\
+             &&& 0 \\
+             &&&& \ddots \\
+             &&&&& 0 \\
+        \end{bmatrix}
+    }_{\Sigma} %]]>
+$$
+简化上面的表达式就可以得到我们需要的奇异值分解了：
+$$
+AV=U\Sigma\Rightarrow A=U\Sigma V^{\top} \tag{6}
+$$
+此处参看了正交矩阵的特性：$V^{-1}=V^{\top}$ 
+
+**参考文献**：
+
+- [奇异值分解推导](http://bourneli.github.io/linear-algebra/2016/11/03/linear-algebra-17-svd.html)
+- [SVD奇异值分解逐步推导](https://www.csuldw.com/2017/03/09/2017-03-09-svd/)
+
+
+
