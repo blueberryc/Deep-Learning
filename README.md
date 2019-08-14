@@ -3,6 +3,8 @@
 
 由于笔记中涉及到公式比较多，所以建议直接使用 PDF 版本，或者用 Typora 打开 markdown 版本。
 
+所有内容已迁移至仓库 [Machine-Learning](https://github.com/blueberryc/Machine-Learning)，方便笔记管理。
+
 ---
 
 
